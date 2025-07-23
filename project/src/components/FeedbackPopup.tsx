@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, MessageSquare, Star, Send, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { X, MessageSquare, Star, Send, ThumbsUp } from 'lucide-react';
 
 interface FeedbackPopupProps {
   isOpen: boolean;
