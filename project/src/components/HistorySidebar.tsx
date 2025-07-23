@@ -130,7 +130,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
                         Processing: {item.processingTime}s
                       </span>
                       <span className="text-purple-400 group-hover:text-purple-300 transition-colors duration-200">
-                        Click to reuse →
+                        Click to view →
                       </span>
                     </div>
                   </div>
