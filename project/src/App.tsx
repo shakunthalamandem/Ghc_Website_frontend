@@ -236,7 +236,7 @@ function App() {
                   }`}>GHC</div>
                   <div className={`text-xs transition-all duration-800 delay-1400 ${
                     logoAnimated ? 'text-slate-400 translate-x-0' : 'text-transparent translate-x-4'
-                  }`}>Global Healthcare Corp</div>
+                  }`}>Golden Hills Capital</div>
                 </div>
               </div>
             </div>
@@ -281,15 +281,17 @@ function App() {
               <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-6 py-3 flex items-center space-x-3">
                 <Brain className="w-8 h-8 text-purple-400" />
                 <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                  AI Portal Assistant
+                Golden Hills Capital India 
                 </span>
                 <Sparkles className="w-6 h-6 text-blue-400 animate-pulse" />
               </div>
             </div>
           </div>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Ask me anything about our company policies, procedures, benefits, and resources. 
-            I'll intelligently process your query to provide the most relevant information.
+We are dedicated to delivering innovative fin-Tech solutions that empower growth and long-term value.
+Our services include investment management, strategic advisory, and solutions for businesses and investors.
+
+
           </p>
         </header>
 
@@ -314,7 +316,7 @@ function App() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Ask me about company policies, benefits, procedures..."
+                    placeholder="Search company policies, procedures, benefits, or resources..."
                     className="flex-1 bg-transparent text-white placeholder-slate-400 border-none outline-none text-lg"
                     disabled={isProcessing}
                   />

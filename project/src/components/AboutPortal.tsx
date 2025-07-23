@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Building2, Brain, Zap, Shield, Users, Globe, Award, TrendingUp, Clock, Search, MessageSquare, Star, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { X, Brain, Zap, Shield, Users, Globe, Award, TrendingUp, Clock, Search, MessageSquare, Star, ArrowRight, Sparkles } from 'lucide-react';
 
 interface AboutPortalProps {
   isOpen: boolean;
@@ -50,7 +50,7 @@ export const AboutPortal: React.FC<AboutPortalProps> = ({ isOpen, onClose }) => 
                       <p className={`text-xl text-purple-200 transition-all duration-1000 delay-300 ${
                         isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                       }`}>
-Golden Hills Capital India pvt Ltd
+Golden Hills Capital India 
                       </p>
                     </div>
                   </div>
