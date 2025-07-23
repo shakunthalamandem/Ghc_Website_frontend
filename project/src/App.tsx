@@ -4,6 +4,8 @@ import { WhoAmIPopup } from './components/WhoAmIPopup';
 import FeedbackPopup from './components/FeedbackPopup';
 import { AboutPortal } from './components/AboutPortal';
 import { HistorySidebar } from './components/HistorySidebar';
+import { VoiceInput } from './components/VoiceInput';
+import { VoiceAvatar } from './components/VoiceAvatar';
 
 interface QuerySuggestion {
   id: string;
@@ -33,6 +35,8 @@ function App() {
   const [showHistory, setShowHistory] = useState(false);
   const [postSearchSuggestions, setPostSearchSuggestions] = useState<QuerySuggestion[]>([]);
   const [logoAnimated, setLogoAnimated] = useState(false);
+  const [isVoiceListening, setIsVoiceListening] = useState(false);
+  const [voiceTranscript, setVoiceTranscript] = useState('');
 
   useEffect(() => {
     // Trigger logo animation after component mounts
@@ -181,6 +185,24 @@ function App() {
     setQuery('');
   };
 
+  const handleVoiceTranscript = (transcript: string) => {
+    setQuery(transcript);
+    setVoiceTranscript(transcript);
+    setIsVoiceListening(true);
+  };
+
+  const handleFinalVoiceTranscript = (transcript: string) => {
+    setQuery(transcript);
+    setVoiceTranscript(transcript);
+    setIsVoiceListening(false);
+    // Auto-search after voice input
+    setTimeout(() => {
+      if (transcript.trim()) {
+        handleSearch();
+      }
+    }, 500);
+  };
+
   const handleSelectHistoryQuery = (selectedQuery: string) => {
     setQuery(selectedQuery);
     setShowHistory(false);
@@ -203,7 +225,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.05%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
       
@@ -236,7 +258,7 @@ function App() {
                   }`}>GHC</div>
                   <div className={`text-xs transition-all duration-800 delay-1400 ${
                     logoAnimated ? 'text-slate-400 translate-x-0' : 'text-transparent translate-x-4'
-                  }`}>Golden Hills Capital</div>
+                  }`}>Global Healthcare Corp</div>
                 </div>
               </div>
             </div>
@@ -281,17 +303,15 @@ function App() {
               <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-6 py-3 flex items-center space-x-3">
                 <Brain className="w-8 h-8 text-purple-400" />
                 <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                Golden Hills Capital India 
+                  AI Portal Assistant
                 </span>
                 <Sparkles className="w-6 h-6 text-blue-400 animate-pulse" />
               </div>
             </div>
           </div>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-We are dedicated to delivering innovative fin-Tech solutions that empower growth and long-term value.
-Our services include investment management, strategic advisory, and solutions for businesses and investors.
-
-
+            Ask me anything about our company policies, procedures, benefits, and resources. 
+            I'll intelligently process your query to provide the most relevant information.
           </p>
         </header>
 
@@ -316,9 +336,15 @@ Our services include investment management, strategic advisory, and solutions fo
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Search company policies, procedures, benefits, or resources..."
+                    placeholder="Ask me about company policies, benefits, procedures..."
                     className="flex-1 bg-transparent text-white placeholder-slate-400 border-none outline-none text-lg"
                     disabled={isProcessing}
+                  />
+                  <VoiceInput
+                    onTranscript={handleVoiceTranscript}
+                    onFinalTranscript={handleFinalVoiceTranscript}
+                    isDisabled={isProcessing}
+                    onListeningChange={setIsVoiceListening}
                   />
                   <button
                     onClick={handleSearch}
@@ -502,16 +528,20 @@ Our services include investment management, strategic advisory, and solutions fo
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
                 <Building2 className="w-6 h-6 text-blue-400" />
-                <span className="text-xl font-bold text-white">Golden Hills Capital</span>
+                <span className="text-xl font-bold text-white">Global Healthcare Corporation</span>
               </div>
-              <p className="text-slate-400 mb-4 leading-relaxed">Revolutionizing finance with AI and ML-driven solutions for smarter, faster, and secure financial services.  
+              <p className="text-slate-400 mb-4 leading-relaxed">
+                Transforming healthcare through innovative AI-powered solutions. 
+                Serving over 10,000 healthcare facilities worldwide since 1995.
               </p>
               <div className="flex items-center space-x-4">
                 <div className="text-sm text-slate-500">
-                  <span className="text-white font-semibold">24/7</span> Support
+                  <span className="text-white font-semibold">24/7</span> AI Support
                 </div>
-     
-
+                <div className="w-px h-4 bg-slate-600"></div>
+                <div className="text-sm text-slate-500">
+                  <span className="text-white font-semibold">99.9%</span> Uptime
+                </div>
               </div>
             </div>
 
@@ -548,7 +578,7 @@ Our services include investment management, strategic advisory, and solutions fo
           {/* Bottom Footer */}
           <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between">
             <div className="text-slate-500 text-sm mb-4 md:mb-0">
-              © 2025 Golden Hills Capital. All rights reserved.
+              © 2025 Global Healthcare Corporation. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <a href="#" className="text-slate-400 hover:text-purple-400 transition-colors duration-200">Privacy Policy</a>
@@ -560,7 +590,7 @@ Our services include investment management, strategic advisory, and solutions fo
 
         <div className="text-center text-slate-500 text-sm mt-8">
           <p>
-            Powered by GHC • Company Portal Assistant • 
+            Powered by AI • Company Portal Assistant • 
             <span className="text-purple-400 ml-1">Always learning, always improving</span>
           </p>
         </div>
@@ -577,6 +607,13 @@ Our services include investment management, strategic advisory, and solutions fo
         onSelectQuery={handleSelectHistoryQuery}
         onClearHistory={handleClearHistory}
       />
+
+      <VoiceAvatar
+        isListening={isVoiceListening}
+        transcript={voiceTranscript}
+        confidence={1} // Set to a default value or your actual confidence value
+      />
+      {/* End of main container */}
     </div>
   );
 }
