@@ -80,14 +80,11 @@ Golden Hills Capital India
                   <h2 className={`text-3xl font-bold text-white mb-4 transition-all duration-1000 delay-700 ${
                     isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                   }`}>
-                    Welcome to the Future of Corporate Knowledge
-                  </h2>
+                  Welcome to the Future of Intelligent Finance                  </h2>
                   <p className={`text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-1000 ${
                     isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                  }`}>
-                    The GHC Portal represents a revolutionary approach to accessing company information. 
-                    Powered by advanced AI technology, it transforms how employees interact with corporate 
-                    knowledge, making information discovery intuitive, fast, and incredibly accurate.
+                  }`}>Golden Hills Capital delivers AI- and ML-driven fintech solutions that simplify investments, optimize financial operations,
+                   and empower smarter decision-making for businesses and individuals.
                   </p>
                 </section>
 
@@ -96,7 +93,7 @@ Golden Hills Capital India
                   <h3 className={`text-2xl font-bold text-white mb-8 text-center transition-all duration-1000 delay-1200 ${
                     isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                   }`}>
-                    Intelligent Features
+                    GHC Portal Features
                   </h3>
                   <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-1000 delay-1400 ${
                     isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -105,50 +102,45 @@ Golden Hills Capital India
                       <div className="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center mb-4">
                         <Brain className="w-6 h-6 text-purple-400" />
                       </div>
-                      <h4 className="text-lg font-semibold text-white mb-3">Smart Query Processing</h4>
+                      <h4 className="text-lg font-semibold text-white mb-3">Software Product Development</h4>
                       <p className="text-slate-300 text-sm">
-                        Advanced AI analyzes and optimizes your questions to deliver the most relevant 
-                        and comprehensive answers from our knowledge base.
+We design and develop robust fintech platforms using AI and ML technologies to deliver personalized financial services and seamless digital experiences.
                       </p>
                     </div>
                     <div className="bg-gradient-to-br from-blue-900/30 to-teal-900/30 rounded-2xl p-6 border border-blue-500/20">
                       <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-4">
                         <Zap className="w-6 h-6 text-blue-400" />
                       </div>
-                      <h4 className="text-lg font-semibold text-white mb-3">Instant Responses</h4>
+                      <h4 className="text-lg font-semibold text-white mb-3">Decision Making Analytics</h4>
                       <p className="text-slate-300 text-sm">
-                        Get immediate answers to your questions with lightning-fast processing 
-                        and real-time response generation.
+Our analytics tools provide real-time insights and data-driven intelligence to support faster, more accurate financial decision-making.
                       </p>
                     </div>
                     <div className="bg-gradient-to-br from-teal-900/30 to-green-900/30 rounded-2xl p-6 border border-teal-500/20">
                       <div className="w-12 h-12 bg-teal-600/20 rounded-xl flex items-center justify-center mb-4">
                         <Search className="w-6 h-6 text-teal-400" />
                       </div>
-                      <h4 className="text-lg font-semibold text-white mb-3">Contextual Suggestions</h4>
+                      <h4 className="text-lg font-semibold text-white mb-3">Research & Analytics</h4>
                       <p className="text-slate-300 text-sm">
-                        Discover relevant information with intelligent suggestions based on 
-                        popular queries and your search patterns.
+     Access deep market insights, trend analysis, and intelligent recommendations powered by machine learning and big data.
                       </p>
                     </div>
                     <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-2xl p-6 border border-orange-500/20">
                       <div className="w-12 h-12 bg-orange-600/20 rounded-xl flex items-center justify-center mb-4">
                         <Shield className="w-6 h-6 text-orange-400" />
                       </div>
-                      <h4 className="text-lg font-semibold text-white mb-3">Secure & Private</h4>
+                      <h4 className="text-lg font-semibold text-white mb-3">Visualization Insights</h4>
                       <p className="text-slate-300 text-sm">
-                        Enterprise-grade security ensures your queries and company information 
-                        remain protected and confidential.
+  Transform complex financial data into intuitive visual dashboards that help stakeholders analyze, interpret, and act with clarity.
                       </p>
                     </div>
                     <div className="bg-gradient-to-br from-pink-900/30 to-purple-900/30 rounded-2xl p-6 border border-pink-500/20">
                       <div className="w-12 h-12 bg-pink-600/20 rounded-xl flex items-center justify-center mb-4">
                         <Clock className="w-6 h-6 text-pink-400" />
                       </div>
-                      <h4 className="text-lg font-semibold text-white mb-3">Query History</h4>
+                      <h4 className="text-lg font-semibold text-white mb-3">Data Management & RPA</h4>
                       <p className="text-slate-300 text-sm">
-                        Access your recent searches and build upon previous queries for 
-                        deeper exploration of topics.
+            Automate routine financial operations and ensure secure, structured data flow using robotic process automation and smart data pipelines.
                       </p>
                     </div>
                     <div className="bg-gradient-to-br from-indigo-900/30 to-purple-900/30 rounded-2xl p-6 border border-indigo-500/20">
@@ -157,74 +149,41 @@ Golden Hills Capital India
                       </div>
                       <h4 className="text-lg font-semibold text-white mb-3">Continuous Learning</h4>
                       <p className="text-slate-300 text-sm">
-                        The AI continuously improves through feedback and usage patterns, 
-                        becoming more accurate and helpful over time.
+Our AI models continuously evolve through usage and feedback, delivering increasingly relevant financial insights over time.
                       </p>
                     </div>
                   </div>
                 </section>
 
-                {/* How It Works */}
-                <section>
-                  <h3 className={`text-2xl font-bold text-white mb-8 text-center transition-all duration-1000 delay-1600 ${
-                    isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                  }`}>
-                    How It Works
-                  </h3>
-                  <div className={`space-y-6 transition-all duration-1000 delay-1800 ${
-                    isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                  }`}>
-                    <div className="flex items-start space-x-6">
-                      <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-bold">1</span>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-white mb-2">Ask Your Question</h4>
-                        <p className="text-slate-300">
-                          Type your question in natural language. Our AI understands context and intent, 
-                          so you can ask questions just like you would to a colleague.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-6">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-teal-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-bold">2</span>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-white mb-2">Query Optimization</h4>
-                        <p className="text-slate-300">
-                          The system analyzes and optimizes your query, adding relevant context and 
-                          keywords to ensure the most accurate and comprehensive results.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-6">
-                      <div className="w-12 h-12 bg-gradient-to-r from-teal-600 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-bold">3</span>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-white mb-2">AI Processing</h4>
-                        <p className="text-slate-300">
-                          Advanced AI models trained on GHC's knowledge base process your optimized 
-                          query and generate accurate, relevant responses.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-6">
-                      <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-bold">4</span>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-white mb-2">Intelligent Response</h4>
-                        <p className="text-slate-300">
-                          Receive comprehensive, well-structured answers with relevant details, 
-                          links to additional resources, and actionable next steps.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </section>
 
+{/* Awards & Recognition */}
+<section>
+  <h3 className={`text-2xl font-bold text-white mb-8 text-center transition-all duration-1000 delay-2400 ${
+    isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+  }`}>
+    Awards & Recognition
+  </h3>
+  <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 transition-all duration-1000 delay-2600 ${
+    isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+  }`}>
+        <div className="bg-gradient-to-br from-green-900/30 to-teal-900/30 rounded-2xl p-6 border border-green-500/20 text-center">
+      <Globe className="w-12 h-12 text-green-400 mx-auto mb-4" />
+      <h4 className="text-lg font-semibold text-white mb-2">ISO/IEC 27001:2022 Certified</h4>
+      <p className="text-slate-300 text-sm">Recognized for excellence in information security management</p>
+    </div>
+    <div className="bg-gradient-to-br from-yellow-900/30 to-orange-900/30 rounded-2xl p-6 border border-yellow-500/20 text-center">
+      <Award className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+      <h4 className="text-lg font-semibold text-white mb-2">Best AI Innovation</h4>
+      <p className="text-slate-300 text-sm">Fintech Excellence Awards 2024</p>
+    </div>
+    <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-2xl p-6 border border-blue-500/20 text-center">
+      <Star className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+      <h4 className="text-lg font-semibold text-white mb-2">Excellence in UX</h4>
+      <p className="text-slate-300 text-sm">Corporate Portal Design Awards 2024</p>
+    </div>
+
+  </div>
+</section>
                 {/* Statistics */}
                 <section>
                   <h3 className={`text-2xl font-bold text-white mb-8 text-center transition-all duration-1000 delay-2000 ${
@@ -266,33 +225,6 @@ Golden Hills Capital India
                   </div>
                 </section>
 
-                {/* Awards & Recognition */}
-                <section>
-                  <h3 className={`text-2xl font-bold text-white mb-8 text-center transition-all duration-1000 delay-2400 ${
-                    isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-                  }`}>
-                    Awards & Recognition
-                  </h3>
-                  <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 transition-all duration-1000 delay-2600 ${
-                    isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                  }`}>
-                    <div className="bg-gradient-to-br from-yellow-900/30 to-orange-900/30 rounded-2xl p-6 border border-yellow-500/20 text-center">
-                      <Award className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-                      <h4 className="text-lg font-semibold text-white mb-2">Best AI Innovation</h4>
-                      <p className="text-slate-300 text-sm">Healthcare Technology Awards 2024</p>
-                    </div>
-                    <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-2xl p-6 border border-blue-500/20 text-center">
-                      <Star className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-                      <h4 className="text-lg font-semibold text-white mb-2">Excellence in UX</h4>
-                      <p className="text-slate-300 text-sm">Corporate Portal Design 2024</p>
-                    </div>
-                    <div className="bg-gradient-to-br from-green-900/30 to-teal-900/30 rounded-2xl p-6 border border-green-500/20 text-center">
-                      <Globe className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                      <h4 className="text-lg font-semibold text-white mb-2">Global Impact</h4>
-                      <p className="text-slate-300 text-sm">Digital Transformation Leaders 2024</p>
-                    </div>
-                  </div>
-                </section>
 
                 {/* Call to Action */}
                 <section className={`text-center transition-all duration-1000 delay-2800 ${
