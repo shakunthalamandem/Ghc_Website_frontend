@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Sparkles, Brain, ChevronRight, Clock, TrendingUp, Users, FileText, Zap, Lightbulb, MessageSquare, ArrowRight, Building2, HelpCircle, Star, RefreshCw } from 'lucide-react';
 import { WhoAmIPopup } from './components/WhoAmIPopup';
-import { FeedbackPopup } from './components/FeedbackPopup';
+import FeedbackPopup from './components/FeedbackPopup';
 import { AboutPortal } from './components/AboutPortal';
 import { HistorySidebar } from './components/HistorySidebar';
 
