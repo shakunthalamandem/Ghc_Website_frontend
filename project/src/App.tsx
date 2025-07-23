@@ -502,20 +502,16 @@ Our services include investment management, strategic advisory, and solutions fo
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
                 <Building2 className="w-6 h-6 text-blue-400" />
-                <span className="text-xl font-bold text-white">Global Healthcare Corporation</span>
+                <span className="text-xl font-bold text-white">Golden Hills Capital</span>
               </div>
-              <p className="text-slate-400 mb-4 leading-relaxed">
-                Transforming healthcare through innovative AI-powered solutions. 
-                Serving over 10,000 healthcare facilities worldwide since 1995.
+              <p className="text-slate-400 mb-4 leading-relaxed">Revolutionizing finance with AI and ML-driven solutions for smarter, faster, and secure financial services.  
               </p>
               <div className="flex items-center space-x-4">
                 <div className="text-sm text-slate-500">
-                  <span className="text-white font-semibold">24/7</span> AI Support
+                  <span className="text-white font-semibold">24/7</span> Support
                 </div>
-                <div className="w-px h-4 bg-slate-600"></div>
-                <div className="text-sm text-slate-500">
-                  <span className="text-white font-semibold">99.9%</span> Uptime
-                </div>
+     
+
               </div>
             </div>
 
@@ -552,7 +548,7 @@ Our services include investment management, strategic advisory, and solutions fo
           {/* Bottom Footer */}
           <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between">
             <div className="text-slate-500 text-sm mb-4 md:mb-0">
-              © 2025 Global Healthcare Corporation. All rights reserved.
+              © 2025 Golden Hills Capital. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <a href="#" className="text-slate-400 hover:text-purple-400 transition-colors duration-200">Privacy Policy</a>
@@ -564,7 +560,7 @@ Our services include investment management, strategic advisory, and solutions fo
 
         <div className="text-center text-slate-500 text-sm mt-8">
           <p>
-            Powered by AI • Company Portal Assistant • 
+            Powered by GHC • Company Portal Assistant • 
             <span className="text-purple-400 ml-1">Always learning, always improving</span>
           </p>
         </div>
