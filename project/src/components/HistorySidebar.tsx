@@ -51,7 +51,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
       )}
       
       {/* Sidebar */}
-      <div className={`fixed top-0 right-0 h-full w-96 bg-slate-900/95 backdrop-blur-md border-l border-white/20 z-50 transform transition-all duration-500 ease-out ${
+      <div className={`fixed top-0 right-0 h-full w-90 bg-slate-900/95 backdrop-blur-md border-l border-white/20 z-50 transform transition-all duration-500 ease-out ${
         isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
       }`}>
         {/* Header */}
@@ -112,17 +112,17 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
                     </div>
                     
                     <h4 className="text-white font-medium mb-2 leading-tight">
-                      {truncateText(item.query, 80)}
+                      {truncateText(item.query, 40)}
                     </h4>
                     
                     <div className="text-xs text-slate-400 mb-3">
                       <span className="bg-slate-800/50 rounded px-2 py-1">
-                        Optimized: {truncateText(item.optimizedQuery, 60)}
+                        Optimized: {truncateText(item.optimizedQuery, 40)}
                       </span>
                     </div>
                     
                     <div className="text-sm text-slate-300 mb-3 leading-relaxed">
-                      {truncateText(item.response, 120)}
+                      {truncateText(item.response, 40)}
                     </div>
                     
                     <div className="flex items-center justify-between text-xs">

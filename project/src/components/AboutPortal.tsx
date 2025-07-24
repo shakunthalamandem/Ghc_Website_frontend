@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, Brain, Zap, Shield, Users, Globe, TrendingUp, Clock, Search, MessageSquare, ArrowRight, Sparkles } from 'lucide-react';
+import {
+  X, Brain, Zap, Shield, Users, Globe, TrendingUp,
+  Clock, Search, MessageSquare, ArrowRight, Sparkles
+} from 'lucide-react';
 import { CountUpAnimation } from './CountUpAnimation';
 
 interface AboutPortalProps {
@@ -24,9 +27,10 @@ export const AboutPortal: React.FC<AboutPortalProps> = ({ isOpen, onClose }) => 
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className={`bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-purple-500/20 shadow-2xl transition-all duration-700 ${
+      <div className={`bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar border border-purple-500/20 shadow-2xl transition-all duration-700 ${
         isAnimating ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
       }`}>
+        {/* Header */}
         <div className="sticky top-0 bg-gradient-to-r from-slate-900/95 to-purple-900/95 backdrop-blur-sm p-6 border-b border-purple-500/20 z-10">
           <div className="flex items-center justify-between">
             <div className={`transition-all duration-1000 delay-300 ${
@@ -37,17 +41,17 @@ export const AboutPortal: React.FC<AboutPortalProps> = ({ isOpen, onClose }) => 
               </h2>
               <p className="text-slate-400 mt-2">Revolutionizing Financial Intelligence with AI</p>
             </div>
-            <button
+            <motion.button
               onClick={onClose}
-              className={`p-2 hover:bg-purple-600/20 rounded-xl transition-all duration-300 hover:scale-110 ${
-                isAnimating ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'
-              }`}
+              className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors duration-200"
+              whileHover={{ scale: 1.1, rotate: 90 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
-              <X className="w-6 h-6 text-slate-400 hover:text-white" />
-            </button>
+              <X className="w-5 h-5 text-white" />
+            </motion.button>
           </div>
         </div>
-
         <div className="p-8 space-y-12">
           {/* Hero Section */}
           <section className="text-center">
