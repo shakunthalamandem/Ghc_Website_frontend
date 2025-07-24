@@ -171,33 +171,47 @@ function App() {
     return `Thank you for your query. Based on your question "${optimizedQuery}", I've searched our company portal database. While I don't have specific information readily available for this particular query, I recommend:\n\n• Checking the employee handbook in the resources section\n• Contacting HR at hr@company.com or ext. 2100\n• Visiting the IT help desk for technical questions\n• Reaching out to your direct supervisor for department-specific policies\n\nIs there anything else I can help you find in our company portal?`;
   };
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
+const handleSearch = async () => {
+  if (!query.trim()) return;
 
-    setIsProcessing(true);
-    setShowSuggestions(false);
+  setIsProcessing(true);
+  setShowSuggestions(false);
 
-    // Simulate processing delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
+  try {
+    const response = await fetch('http://192.168.1.43:8000/api/assistant_query/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify({ query }),
+    });
 
-    const optimizedQuery = optimizeQuery(query);
-    const response = simulateAIResponse(optimizedQuery);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
 
     const newResponse: QueryResponse = {
       id: Date.now().toString(),
       query,
-      optimizedQuery,
-      response,
+      optimizedQuery: query, // Since API doesn't return it yet
+      response: data.message, // Use 'message' from backend
       timestamp: new Date(),
-      processingTime: 1.5
+      processingTime: 1.5,
     };
 
     setCurrentResponse(newResponse);
-    setQueryHistory(prev => [newResponse, ...prev.slice(0, 4)]); // Keep last 5
+    setQueryHistory(prev => [newResponse, ...prev.slice(0, 4)]);
     setPostSearchSuggestions(getRelatedSuggestions(query));
-    setIsProcessing(false);
     setQuery('');
-  };
+  } catch (error) {
+    console.error('Error fetching from backend:', error);
+    alert('Something went wrong. Please try again.');
+  } finally {
+    setIsProcessing(false);
+  }
+};
 
   const handleVoiceTranscript = (transcript: string) => {
     setQuery(transcript);
