@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Sparkles, Brain, ChevronRight, Clock, TrendingUp, Users, FileText, Zap, Lightbulb, MessageSquare, ArrowRight, Building2, HelpCircle, Star, RefreshCw } from 'lucide-react';
+import { Search, Sparkles, ChevronRight, Clock, TrendingUp, Users, FileText, Zap, Lightbulb, MessageSquare, Building2, HelpCircle, Star, RefreshCw, ArrowUp } from 'lucide-react';
 import { WhoAmIPopup } from './components/WhoAmIPopup';
 import FeedbackPopup from './components/FeedbackPopup';
 import { AboutPortal } from './components/AboutPortal';
@@ -225,7 +225,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black-900 to-slate-900">
+<div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#045d78] to-slate-900">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.05%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
       
@@ -234,34 +234,26 @@ function App() {
         <nav className="flex items-center justify-between mb-8">
           {/* GHC Logo */}
           <div className="flex items-center space-x-3">
-            <div className={`relative transition-all duration-2000 ease-out ${
-              logoAnimated 
-                ? 'transform translate-x-0 translate-y-0 rotate-0 scale-100 opacity-100' 
-                : 'transform -translate-x-32 translate-y-16 rotate-45 scale-0 opacity-0'
-            }`}>
-              <div className={`absolute -inset-1 bg-gradient-to-r from-blue-600 to-teal-600 rounded-lg blur transition-all duration-2000 ${
-                logoAnimated ? 'opacity-75 animate-pulse' : 'opacity-0'
-              }`}></div>
-              <div className={`relative bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-4 py-2 flex items-center space-x-3 transition-all duration-1500 delay-300 ${
-                logoAnimated ? 'shadow-2xl shadow-blue-500/25' : ''
-              }`}>
-                <div className={`transition-all duration-1000 delay-700 ${
-                  logoAnimated ? 'rotate-0 scale-100' : 'rotate-180 scale-0'
-                }`}>
-                  <Building2 className={`w-8 h-8 transition-all duration-1000 delay-1000 ${
-                    logoAnimated ? 'text-blue-400' : 'text-transparent'
-                  }`} />
-                </div>
-                <div>
-                  <div className={`text-xl font-bold transition-all duration-800 delay-1200 ${
-                    logoAnimated ? 'text-white translate-x-0' : 'text-transparent translate-x-4'
-                  }`}>GHC</div>
-                  <div className={`text-xs transition-all duration-800 delay-1400 ${
-                    logoAnimated ? 'text-slate-400 translate-x-0' : 'text-transparent translate-x-4'
-                  }`}>Golden Hills Capital</div>
-                </div>
-              </div>
-            </div>
+<div className={`relative transition-all duration-1500 ease-out ${
+  logoAnimated
+    ? 'transform scale-100 opacity-100'
+    : 'transform scale-0 opacity-0'
+}`}>
+  {/* Glow & background blur */}
+  <div className={`absolute -inset-2 bg-gradient-to-r from-orange-400 to-yellow-500 rounded-xl blur-lg opacity-70 animate-pulse`}></div>
+
+  {/* Logo Card */}
+  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 shadow-xl flex items-center space-x-3">
+    <img
+      src="/Color logo - no background.png"
+      alt="Golden Hills Logo"
+      className={`w-36 h-auto transition-all duration-1000 ${
+        logoAnimated ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+      }`}
+    />
+  </div>
+</div>
+
           </div>
 
           {/* Right Navigation */}
@@ -301,7 +293,7 @@ function App() {
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-75 animate-pulse"></div>
               <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-6 py-3 flex items-center space-x-3">
-                <Brain className="w-8 h-8 text-purple-400" />
+                {/* <Brain className="w-8 h-8 text-purple-400" /> */}
                 <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
                 Golden Hills Capital India 
                 </span>
@@ -324,7 +316,7 @@ Our services include investment management, strategic advisory, and solutions fo
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 rounded-2xl blur opacity-75"></div>
               <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-1">
                 <div className="flex items-center space-x-4 p-4">
-                  <Search className="w-6 h-6 text-slate-400 flex-shrink-0" />
+                  <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
                   <button
                     onClick={() => setShowWhoAmI(true)}
                     className="text-slate-400 hover:text-purple-400 transition-colors duration-200 flex items-center space-x-1 text-sm"
@@ -360,8 +352,8 @@ Our services include investment management, strategic advisory, and solutions fo
                       </>
                     ) : (
                       <>
-                        <span>Search</span>
-                        <ArrowRight className="w-5 h-5" />
+                        {/* <span>Search</span> */}
+                        <ArrowUp className="w-5 h-5" />
                       </>
                     )}
                   </button>
