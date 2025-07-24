@@ -39,18 +39,18 @@ function App() {
   const [voiceTranscript, setVoiceTranscript] = useState('');
   const typingText = "Search company policies, procedures, benefits, or resources...";
 
-const [placeholder, setPlaceholder] = useState('');
-const [index, setIndex] = useState(0);
+  const [placeholder, setPlaceholder] = useState('');
+  const [index, setIndex] = useState(0);
 
-useEffect(() => {
-  if (index < typingText.length) {
-    const timeout = setTimeout(() => {
-      setPlaceholder((prev) => prev + typingText.charAt(index));
-      setIndex(index + 1);
-    }, 80);
-    return () => clearTimeout(timeout);
-  }
-}, [index]);
+  useEffect(() => {
+    if (index < typingText.length) {
+      const timeout = setTimeout(() => {
+        setPlaceholder((prev) => prev + typingText.charAt(index));
+        setIndex(index + 1);
+      }, 80);
+      return () => clearTimeout(timeout);
+    }
+  }, [index]);
 
   useEffect(() => {
     // Trigger logo animation after component mounts
@@ -101,7 +101,7 @@ useEffect(() => {
 
   const getRelatedSuggestions = (query: string): QuerySuggestion[] => {
     const keywords = query.toLowerCase();
-    
+
     if (keywords.includes('vacation') || keywords.includes('leave')) {
       return [
         { id: 'r1', text: 'What is the sick leave policy?', category: 'HR Policies', icon: <FileText className="w-4 h-4" /> },
@@ -109,7 +109,7 @@ useEffect(() => {
         { id: 'r3', text: 'What is the parental leave policy?', category: 'Benefits', icon: <Users className="w-4 h-4" /> }
       ];
     }
-    
+
     if (keywords.includes('benefits') || keywords.includes('insurance')) {
       return [
         { id: 'r4', text: 'How do I enroll in health insurance?', category: 'Benefits', icon: <Zap className="w-4 h-4" /> },
@@ -117,7 +117,7 @@ useEffect(() => {
         { id: 'r6', text: 'Are there wellness programs available?', category: 'Benefits', icon: <Users className="w-4 h-4" /> }
       ];
     }
-    
+
     if (keywords.includes('support') || keywords.includes('help') || keywords.includes('contact')) {
       return [
         { id: 'r7', text: 'How do I reset my password?', category: 'IT Support', icon: <MessageSquare className="w-4 h-4" /> },
@@ -125,7 +125,7 @@ useEffect(() => {
         { id: 'r9', text: 'What are the HR contact hours?', category: 'Support', icon: <Clock className="w-4 h-4" /> }
       ];
     }
-    
+
     // Default related suggestions
     return [
       { id: 'r10', text: 'What training programs are available?', category: 'Development', icon: <Lightbulb className="w-4 h-4" /> },
@@ -137,7 +137,7 @@ useEffect(() => {
   const optimizeQuery = (originalQuery: string): string => {
     // Simulate query optimization logic
     const keywords = originalQuery.toLowerCase();
-    
+
     if (keywords.includes('vacation') || keywords.includes('time off') || keywords.includes('leave')) {
       return `Employee leave policies and vacation request procedures for: "${originalQuery}"`;
     }
@@ -150,7 +150,7 @@ useEffect(() => {
     if (keywords.includes('contact') || keywords.includes('support') || keywords.includes('help')) {
       return `Contact information and support resources for: "${originalQuery}"`;
     }
-    
+
     return `Company portal information search for: "${originalQuery}" - provide comprehensive and relevant details`;
   };
 
@@ -159,15 +159,15 @@ useEffect(() => {
     if (optimizedQuery.includes('leave policies')) {
       return `Our company offers flexible time-off policies including:\n\n• Annual Leave: 20 days per year (prorated for new hires)\n• Sick Leave: 10 days per year with rollover option\n• Personal Days: 3 floating days annually\n• Parental Leave: 12 weeks paid leave for new parents\n\nTo request time off, please use the HR portal or contact your manager at least 2 weeks in advance. All requests require supervisor approval and are subject to business needs and scheduling requirements.`;
     }
-    
+
     if (optimizedQuery.includes('benefits information')) {
       return `We provide comprehensive benefits to support your well-being:\n\n• Health Insurance: Premium medical, dental, and vision coverage\n• Retirement: 401(k) with 4% company matching\n• Wellness: On-site gym, mental health support, annual health screenings\n• Professional Development: $2,000 annual learning budget\n• Flexible Work: Remote work options and flexible scheduling\n• Additional: Life insurance, disability coverage, employee assistance program\n\nEnrollment periods occur annually in November. Contact HR for detailed plan information and eligibility requirements.`;
     }
-    
+
     if (optimizedQuery.includes('company values')) {
       return `Our company is built on five core values that guide everything we do:\n\n• Innovation: We embrace creativity and continuously seek better solutions\n• Integrity: We act with honesty, transparency, and ethical responsibility\n• Collaboration: We work together to achieve shared goals and success\n• Excellence: We strive for the highest quality in everything we deliver\n• Growth: We invest in our people and foster continuous learning\n\nOur mission is to empower teams with cutting-edge technology solutions while maintaining our commitment to sustainable business practices and positive community impact.`;
     }
-    
+
     return `Thank you for your query. Based on your question "${optimizedQuery}", I've searched our company portal database. While I don't have specific information readily available for this particular query, I recommend:\n\n• Checking the employee handbook in the resources section\n• Contacting HR at hr@company.com or ext. 2100\n• Visiting the IT help desk for technical questions\n• Reaching out to your direct supervisor for department-specific policies\n\nIs there anything else I can help you find in our company portal?`;
   };
 
@@ -176,13 +176,13 @@ useEffect(() => {
 
     setIsProcessing(true);
     setShowSuggestions(false);
-    
+
     // Simulate processing delay
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     const optimizedQuery = optimizeQuery(query);
     const response = simulateAIResponse(optimizedQuery);
-    
+
     const newResponse: QueryResponse = {
       id: Date.now().toString(),
       query,
@@ -191,7 +191,7 @@ useEffect(() => {
       timestamp: new Date(),
       processingTime: 1.5
     };
-    
+
     setCurrentResponse(newResponse);
     setQueryHistory(prev => [newResponse, ...prev.slice(0, 4)]); // Keep last 5
     setPostSearchSuggestions(getRelatedSuggestions(query));
@@ -239,34 +239,32 @@ useEffect(() => {
   };
 
   return (
-<div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#045d78] to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#045d78] to-slate-900">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.05%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-      
+
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-6xl">
         {/* Top Navigation */}
         <nav className="flex items-center justify-between mb-8">
           {/* GHC Logo */}
           <div className="flex items-center space-x-3">
-<div className={`relative transition-all duration-1500 ease-out ${
-  logoAnimated
-    ? 'transform scale-100 opacity-100'
-    : 'transform scale-0 opacity-0'
-}`}>
-  {/* Glow & background blur */}
-  <div className={`absolute -inset-2 bg-gradient-to-r from-orange-400 to-yellow-500 rounded-xl blur-lg opacity-70 animate-pulse`}></div>
+            <div className={`relative transition-all duration-1500 ease-out ${logoAnimated
+                ? 'transform scale-100 opacity-100'
+                : 'transform scale-0 opacity-0'
+              }`}>
+              {/* Glow & background blur */}
+              <div className={`absolute -inset-2 bg-gradient-to-r from-orange-400 to-yellow-500 rounded-xl blur-lg opacity-70 animate-pulse`}></div>
 
-  {/* Logo Card */}
-  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 shadow-xl flex items-center space-x-3">
-    <img
-      src="/Color logo - no background.png"
-      alt="Golden Hills Logo"
-      className={`w-36 h-auto transition-all duration-1000 ${
-        logoAnimated ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-      }`}
-    />
-  </div>
-</div>
+              {/* Logo Card */}
+              <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 shadow-xl flex items-center space-x-3">
+                <img
+                  src="/Color logo - no background.png"
+                  alt="Golden Hills Logo"
+                  className={`w-36 h-auto transition-all duration-1000 ${logoAnimated ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+                    }`}
+                />
+              </div>
+            </div>
 
           </div>
 
@@ -309,15 +307,15 @@ useEffect(() => {
               <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-6 py-3 flex items-center space-x-3">
                 {/* <Brain className="w-8 h-8 text-purple-400" /> */}
                 <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                Golden Hills Capital India 
+                  Golden Hills Capital India
                 </span>
                 <Sparkles className="w-6 h-6 text-blue-400 animate-pulse" />
               </div>
             </div>
           </div>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-We are dedicated to delivering innovative fin-Tech solutions that empower growth and long-term value.
-Our services include investment management, strategic advisory, and solutions for businesses and investors.
+            We are dedicated to delivering innovative fin-Tech solutions that empower growth and long-term value.
+            Our services include investment management, strategic advisory, and solutions for businesses and investors.
 
 
           </p>
@@ -339,15 +337,15 @@ Our services include investment management, strategic advisory, and solutions fo
                     <span>Who am I?</span>
                   </button>
                   <div className="w-px h-6 bg-slate-600"></div>
-<input
-  type="text"
-  value={query}
-  onChange={(e) => setQuery(e.target.value)}
-  onKeyPress={handleKeyPress}
-  placeholder={placeholder}
-  className="flex-1 bg-transparent text-white placeholder-slate-400 border-none outline-none text-lg"
-  disabled={isProcessing}
-/>
+                  <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    placeholder={placeholder}
+                    className="flex-1 bg-transparent text-white placeholder-slate-400 border-none outline-none text-lg"
+                    disabled={isProcessing}
+                  />
 
                   <VoiceInput
                     onTranscript={handleVoiceTranscript}
@@ -539,13 +537,13 @@ Our services include investment management, strategic advisory, and solutions fo
                 <Building2 className="w-6 h-6 text-blue-400" />
                 <span className="text-xl font-bold text-white">Golden Hills Capital</span>
               </div>
-              <p className="text-slate-400 mb-4 leading-relaxed">Revolutionizing finance with AI and ML-driven solutions for smarter, faster, and secure financial services.  
+              <p className="text-slate-400 mb-4 leading-relaxed">Revolutionizing finance with AI and ML-driven solutions for smarter, faster, and secure financial services.
               </p>
               <div className="flex items-center space-x-4">
                 <div className="text-sm text-slate-500">
                   <span className="text-white font-semibold">24/7</span> Support
                 </div>
-     
+
 
               </div>
             </div>
@@ -569,7 +567,7 @@ Our services include investment management, strategic advisory, and solutions fo
                 <li className="text-slate-400">IT: <span className="text-white">ext. 3000</span></li>
                 <li className="text-slate-400">Portal: <span className="text-white">ext. 4500</span></li>
                 <li>
-                  <button 
+                  <button
                     onClick={() => setShowFeedback(true)}
                     className="text-purple-400 hover:text-purple-300 transition-colors duration-200"
                   >
@@ -595,7 +593,7 @@ Our services include investment management, strategic advisory, and solutions fo
 
         <div className="text-center text-slate-500 text-sm mt-8">
           <p>
-            Powered by GHC • Company Portal Assistant • 
+            Powered by GHC • Company Portal Assistant •
             <span className="text-purple-400 ml-1">Always learning, always improving</span>
           </p>
         </div>
@@ -605,8 +603,8 @@ Our services include investment management, strategic advisory, and solutions fo
       <WhoAmIPopup isOpen={showWhoAmI} onClose={() => setShowWhoAmI(false)} />
       <FeedbackPopup isOpen={showFeedback} onClose={() => setShowFeedback(false)} />
       <AboutPortal isOpen={showAbout} onClose={() => setShowAbout(false)} />
-      <HistorySidebar 
-        isOpen={showHistory} 
+      <HistorySidebar
+        isOpen={showHistory}
         onClose={() => setShowHistory(false)}
         queryHistory={queryHistory}
         onSelectQuery={handleSelectHistoryQuery}
