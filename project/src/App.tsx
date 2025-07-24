@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Sparkles, Brain, ChevronRight, Clock, TrendingUp, Users, FileText, Zap, Lightbulb, MessageSquare, ArrowRight, Building2, HelpCircle, Star, RefreshCw } from 'lucide-react';
 import { WhoAmIPopup } from './components/WhoAmIPopup';
-import { FeedbackPopup } from './components/FeedbackPopup';
+import FeedbackPopup from './components/FeedbackPopup';
 import { AboutPortal } from './components/AboutPortal';
 import { HistorySidebar } from './components/HistorySidebar';
+import { VoiceInput } from './components/VoiceInput';
+import { VoiceAvatar } from './components/VoiceAvatar';
 
 interface QuerySuggestion {
   id: string;
@@ -33,6 +35,8 @@ function App() {
   const [showHistory, setShowHistory] = useState(false);
   const [postSearchSuggestions, setPostSearchSuggestions] = useState<QuerySuggestion[]>([]);
   const [logoAnimated, setLogoAnimated] = useState(false);
+  const [isVoiceListening, setIsVoiceListening] = useState(false);
+  const [voiceTranscript, setVoiceTranscript] = useState('');
 
   useEffect(() => {
     // Trigger logo animation after component mounts
@@ -181,6 +185,24 @@ function App() {
     setQuery('');
   };
 
+  const handleVoiceTranscript = (transcript: string) => {
+    setQuery(transcript);
+    setVoiceTranscript(transcript);
+    setIsVoiceListening(true);
+  };
+
+  const handleFinalVoiceTranscript = (transcript: string) => {
+    setQuery(transcript);
+    setVoiceTranscript(transcript);
+    setIsVoiceListening(false);
+    // Auto-search after voice input
+    setTimeout(() => {
+      if (transcript.trim()) {
+        handleSearch();
+      }
+    }, 500);
+  };
+
   const handleSelectHistoryQuery = (selectedQuery: string) => {
     setQuery(selectedQuery);
     setShowHistory(false);
@@ -319,6 +341,12 @@ Our services include investment management, strategic advisory, and solutions fo
                     placeholder="Search company policies, procedures, benefits, or resources..."
                     className="flex-1 bg-transparent text-white placeholder-slate-400 border-none outline-none text-lg"
                     disabled={isProcessing}
+                  />
+                  <VoiceInput
+                    onTranscript={handleVoiceTranscript}
+                    onFinalTranscript={handleFinalVoiceTranscript}
+                    isDisabled={isProcessing}
+                    onListeningChange={setIsVoiceListening}
                   />
                   <button
                     onClick={handleSearch}
@@ -577,6 +605,13 @@ Our services include investment management, strategic advisory, and solutions fo
         onSelectQuery={handleSelectHistoryQuery}
         onClearHistory={handleClearHistory}
       />
+
+      <VoiceAvatar
+        isListening={isVoiceListening}
+        transcript={voiceTranscript}
+        confidence={1} // Set to a default value or your actual confidence value
+      />
+      {/* End of main container */}
     </div>
   );
 }
