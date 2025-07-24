@@ -37,6 +37,20 @@ function App() {
   const [logoAnimated, setLogoAnimated] = useState(false);
   const [isVoiceListening, setIsVoiceListening] = useState(false);
   const [voiceTranscript, setVoiceTranscript] = useState('');
+  const typingText = "Search company policies, procedures, benefits, or resources...";
+
+const [placeholder, setPlaceholder] = useState('');
+const [index, setIndex] = useState(0);
+
+useEffect(() => {
+  if (index < typingText.length) {
+    const timeout = setTimeout(() => {
+      setPlaceholder((prev) => prev + typingText.charAt(index));
+      setIndex(index + 1);
+    }, 80);
+    return () => clearTimeout(timeout);
+  }
+}, [index]);
 
   useEffect(() => {
     // Trigger logo animation after component mounts
@@ -325,15 +339,16 @@ Our services include investment management, strategic advisory, and solutions fo
                     <span>Who am I?</span>
                   </button>
                   <div className="w-px h-6 bg-slate-600"></div>
-                  <input
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Search company policies, procedures, benefits, or resources..."
-                    className="flex-1 bg-transparent text-white placeholder-slate-400 border-none outline-none text-lg"
-                    disabled={isProcessing}
-                  />
+<input
+  type="text"
+  value={query}
+  onChange={(e) => setQuery(e.target.value)}
+  onKeyPress={handleKeyPress}
+  placeholder={placeholder}
+  className="flex-1 bg-transparent text-white placeholder-slate-400 border-none outline-none text-lg"
+  disabled={isProcessing}
+/>
+
                   <VoiceInput
                     onTranscript={handleVoiceTranscript}
                     onFinalTranscript={handleFinalVoiceTranscript}
