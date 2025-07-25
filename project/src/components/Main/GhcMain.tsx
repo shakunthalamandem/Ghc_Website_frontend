@@ -6,6 +6,7 @@ import { HistorySidebar } from '../Services/Navigation/HistorySidebar';
 import { VoiceAvatar } from '../Services/Navigation/VoiceAvatar';
 import { VoiceInput } from '../Services/Navigation/VoiceInput';
 import { WhoAmIPopup } from '../Services/Navigation/WhoAmIPopup';
+import Logo from '../Assets/Images/Color logo - no background.png'; 
 
 
 interface QuerySuggestion {
@@ -238,7 +239,7 @@ const handleSearch = async () => {
               {/* Logo Card */}
               <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 shadow-xl flex items-center space-x-3">
                 <img
-                  src="/Color logo - no background.png"
+                  src={Logo}
                   alt="Golden Hills Logo"
                   className={`w-36 h-auto transition-all duration-1000 ${logoAnimated ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
                     }`}
