@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Sparkles, ChevronRight, Clock, TrendingUp, Users, FileText, Zap, Lightbulb, MessageSquare, Building2, HelpCircle, Star, RefreshCw, ArrowUp } from 'lucide-react';
-import { WhoAmIPopup } from './components/WhoAmIPopup';
-import FeedbackPopup from './components/FeedbackPopup';
-import { AboutPortal } from './components/AboutPortal';
-import { HistorySidebar } from './components/HistorySidebar';
-import { VoiceInput } from './components/VoiceInput';
-import { VoiceAvatar } from './components/VoiceAvatar';
+import { WhoAmIPopup } from './components/Services/Navigation/WhoAmIPopup';
+import FeedbackPopup from './components/Services/Navigation/FeedbackPopup';
+import { AboutPortal } from './components/Services/Navigation/AboutPortal';
+import { HistorySidebar } from './components/Services/Navigation/HistorySidebar';
+import { VoiceInput } from './components/Services/Navigation/VoiceInput';
+import { VoiceAvatar } from './components/Services/Navigation/VoiceAvatar';
 
 interface QuerySuggestion {
   id: string;
