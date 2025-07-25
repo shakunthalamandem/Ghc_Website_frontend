@@ -134,43 +134,8 @@ function App() {
     ];
   };
 
-  const optimizeQuery = (originalQuery: string): string => {
-    // Simulate query optimization logic
-    const keywords = originalQuery.toLowerCase();
 
-    if (keywords.includes('vacation') || keywords.includes('time off') || keywords.includes('leave')) {
-      return `Employee leave policies and vacation request procedures for: "${originalQuery}"`;
-    }
-    if (keywords.includes('benefits') || keywords.includes('insurance') || keywords.includes('health')) {
-      return `Employee benefits information and eligibility details for: "${originalQuery}"`;
-    }
-    if (keywords.includes('policy') || keywords.includes('rule') || keywords.includes('procedure')) {
-      return `Company policies and procedures documentation for: "${originalQuery}"`;
-    }
-    if (keywords.includes('contact') || keywords.includes('support') || keywords.includes('help')) {
-      return `Contact information and support resources for: "${originalQuery}"`;
-    }
-
-    return `Company portal information search for: "${originalQuery}" - provide comprehensive and relevant details`;
-  };
-
-  const simulateAIResponse = (optimizedQuery: string): string => {
-    // Simulate AI response based on optimized query
-    if (optimizedQuery.includes('leave policies')) {
-      return `Our company offers flexible time-off policies including:\n\n• Annual Leave: 20 days per year (prorated for new hires)\n• Sick Leave: 10 days per year with rollover option\n• Personal Days: 3 floating days annually\n• Parental Leave: 12 weeks paid leave for new parents\n\nTo request time off, please use the HR portal or contact your manager at least 2 weeks in advance. All requests require supervisor approval and are subject to business needs and scheduling requirements.`;
-    }
-
-    if (optimizedQuery.includes('benefits information')) {
-      return `We provide comprehensive benefits to support your well-being:\n\n• Health Insurance: Premium medical, dental, and vision coverage\n• Retirement: 401(k) with 4% company matching\n• Wellness: On-site gym, mental health support, annual health screenings\n• Professional Development: $2,000 annual learning budget\n• Flexible Work: Remote work options and flexible scheduling\n• Additional: Life insurance, disability coverage, employee assistance program\n\nEnrollment periods occur annually in November. Contact HR for detailed plan information and eligibility requirements.`;
-    }
-
-    if (optimizedQuery.includes('company values')) {
-      return `Our company is built on five core values that guide everything we do:\n\n• Innovation: We embrace creativity and continuously seek better solutions\n• Integrity: We act with honesty, transparency, and ethical responsibility\n• Collaboration: We work together to achieve shared goals and success\n• Excellence: We strive for the highest quality in everything we deliver\n• Growth: We invest in our people and foster continuous learning\n\nOur mission is to empower teams with cutting-edge technology solutions while maintaining our commitment to sustainable business practices and positive community impact.`;
-    }
-
-    return `Thank you for your query. Based on your question "${optimizedQuery}", I've searched our company portal database. While I don't have specific information readily available for this particular query, I recommend:\n\n• Checking the employee handbook in the resources section\n• Contacting HR at hr@company.com or ext. 2100\n• Visiting the IT help desk for technical questions\n• Reaching out to your direct supervisor for department-specific policies\n\nIs there anything else I can help you find in our company portal?`;
-  };
-
+ 
 const handleSearch = async () => {
   if (!query.trim()) return;
 
