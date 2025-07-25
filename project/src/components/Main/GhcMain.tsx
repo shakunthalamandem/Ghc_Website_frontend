@@ -8,6 +8,8 @@ import { VoiceInput } from '../Services/Navigation/VoiceInput';
 import { WhoAmIPopup } from '../Services/Navigation/WhoAmIPopup';
 import Footer from '../Pages/Footer';
 import Logo from '../Assets/Images/Color logo - no background.png'; 
+import DynamicRenderer from '../Sections/DynamicRenderer';
+import { DynamicBlock } from '../Sections/types';
 
 interface QueryResponse {
   id: string;
@@ -30,6 +32,8 @@ function GhcMain() {
   const [logoAnimated, setLogoAnimated] = useState(false);
   const [isVoiceListening, setIsVoiceListening] = useState(false);
   const [voiceTranscript, setVoiceTranscript] = useState('');
+  const [structuredResponse, setStructuredResponse] = useState<DynamicBlock[] | null>(null);
+
   const typingText = "Search company policies, procedures, benefits, or resources...";
 
   const [placeholder, setPlaceholder] = useState('');
@@ -52,44 +56,78 @@ function GhcMain() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
+  // const handleSearch = async () => {
+  //   if (!query.trim()) return;
 
-    setIsProcessing(true);
+  //   setIsProcessing(true);
 
-    try {
-      const response = await fetch('http://192.168.1.43:8000/api/assistant_query/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ question: query }),
-      });
+  //   try {
+  //     const response = await fetch('http://192.168.1.43:8000/api/test_query/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ question: query }),
+  //     });
 
-      if (!response.ok) throw new Error('Network response was not ok');
+  //     if (!response.ok) throw new Error('Network response was not ok');
 
-    const message = await response.text();
+  //   const message = await response.text();
 
 
-      const newResponse: QueryResponse = {
-        id: Date.now().toString(),
-        query,
-        optimizedQuery: query,
-         response: message,
-        timestamp: new Date(),
-        processingTime: 1.5,
-      };
+  //     const newResponse: QueryResponse = {
+  //       id: Date.now().toString(),
+  //       query,
+  //       optimizedQuery: query,
+  //        response: message,
+  //       timestamp: new Date(),
+  //       processingTime: 1.5,
+  //     };
 
-      setCurrentResponse(newResponse);
-      setQueryHistory(prev => [newResponse, ...prev.slice(0, 4)]);
-      setQuery('');
-    } catch (error) {
-      console.error('Error fetching from backend:', error);
-      alert('Something went wrong. Please try again.');
-    } finally {
-      setIsProcessing(false);
-    }
-  };
+  //     setCurrentResponse(newResponse);
+  //     setQueryHistory(prev => [newResponse, ...prev.slice(0, 4)]);
+  //     setQuery('');
+  //   } catch (error) {
+  //     console.error('Error fetching from backend:', error);
+  //     alert('Something went wrong. Please try again.');
+  //   } finally {
+  //     setIsProcessing(false);
+  //   }
+  // };
+const handleSearch = async () => {
+  if (!query.trim()) return;
+  setIsProcessing(true);
+
+  try {
+    const response = await fetch('http://192.168.1.43:8000/api/test_query/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: query }),
+    });
+
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json(); // expecting { response: [...] }
+
+    const newResponse: QueryResponse = {
+      id: Date.now().toString(),
+      query,
+      optimizedQuery: query,
+      response: JSON.stringify(data),
+      timestamp: new Date(),
+      processingTime: 1.5,
+    };
+
+    setCurrentResponse(newResponse);
+    setStructuredResponse(data.response); // 👈 set structured blocks
+    setQueryHistory(prev => [newResponse, ...prev.slice(0, 4)]);
+    setQuery('');
+  } catch (error) {
+    console.error('Error fetching from backend:', error);
+    alert('Something went wrong. Please try again.');
+  } finally {
+    setIsProcessing(false);
+  }
+};
 
   const handleVoiceTranscript = (transcript: string) => {
     setQuery(transcript);
@@ -229,7 +267,7 @@ function GhcMain() {
           </div>
         )}
 
-        {currentResponse && !isProcessing && (
+        {/* {currentResponse && !isProcessing && (
           <div className="mb-12 max-w-4xl mx-auto">
             <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden">
               <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 p-4 border-b border-white/10">
@@ -257,7 +295,13 @@ function GhcMain() {
               </div>
             </div>
           </div>
-        )}
+        )} */}
+        {structuredResponse && !isProcessing && (
+  <div >
+    <DynamicRenderer response={structuredResponse} />
+  </div>
+)}
+
 
         {queryHistory.length > 0 && (
           <div className="mb-12">
