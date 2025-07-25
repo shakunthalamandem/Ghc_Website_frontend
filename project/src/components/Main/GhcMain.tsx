@@ -68,13 +68,14 @@ function GhcMain() {
 
       if (!response.ok) throw new Error('Network response was not ok');
 
-      const data = await response.json();
+    const message = await response.text();
+
 
       const newResponse: QueryResponse = {
         id: Date.now().toString(),
         query,
         optimizedQuery: query,
-        response: data.message,
+         response: message,
         timestamp: new Date(),
         processingTime: 1.5,
       };
@@ -247,14 +248,6 @@ function GhcMain() {
                 </div>
               </div>
               <div className="p-6">
-                <div className="mb-4">
-                  <p className="text-slate-400 text-sm mb-2">Original Query:</p>
-                  <p className="text-white bg-slate-800/50 rounded-lg p-3">{currentResponse.query}</p>
-                </div>
-                <div className="mb-4">
-                  <p className="text-slate-400 text-sm mb-2">Optimized Query:</p>
-                  <p className="text-blue-300 bg-blue-900/20 rounded-lg p-3 italic">{currentResponse.optimizedQuery}</p>
-                </div>
                 <div>
                   <p className="text-slate-400 text-sm mb-2">Response:</p>
                   <div className="text-white bg-gradient-to-br from-slate-800/50 to-slate-700/50 rounded-lg p-4 whitespace-pre-line">
