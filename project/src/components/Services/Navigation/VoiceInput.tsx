@@ -200,15 +200,12 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({
         )}
       </button>
 
-      {permissionError && (
-        <div className="absolute top-12 left-0 z-50 bg-orange-100 border border-orange-300 text-orange-800 px-3 py-2 rounded-lg shadow-lg max-w-xs text-sm">
-          <div className="font-medium mb-1">Permission Required</div>
-          <div>{permissionError}</div>
-          <div className="mt-2 text-xs text-orange-600">
-            Click the microphone icon in your browser's address bar to allow access.
-          </div>
-        </div>
-      )}
+{permissionError && (
+  <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-orange-100 text-orange-800 border border-orange-300 px-4 py-2 shadow-md text-sm">
+    <span className="font-medium">Permission Required:</span> {permissionError}
+  </div>
+)}
+
 
       {isListening && (
         <div className="flex items-center space-x-1">
