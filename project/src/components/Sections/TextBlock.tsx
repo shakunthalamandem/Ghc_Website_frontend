@@ -7,10 +7,12 @@ interface TextBlockProps {
 
 const TextBlock: React.FC<TextBlockProps> = ({ content }) => {
   return (
+    <>
     <div className="p-4 text-lg leading-relaxed text-gray-100 bg-black/10 rounded-xl">
       
-  <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+     <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
     </div>
+    </>
   );
 };
 

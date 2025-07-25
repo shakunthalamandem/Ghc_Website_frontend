@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Sparkles,  Clock, MessageSquare, Building2, HelpCircle, Star, ArrowUp } from 'lucide-react';
+import { Search, Sparkles,  Clock, Building2, HelpCircle, Star, ArrowUp } from 'lucide-react';
 import { AboutPortal } from '../Services/Navigation/AboutPortal';
 import FeedbackPopup from '../Services/Navigation/FeedbackPopup';
 import { HistorySidebar } from '../Services/Navigation/HistorySidebar';
@@ -23,7 +23,7 @@ interface QueryResponse {
 function GhcMain() {
   const [query, setQuery] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [currentResponse, setCurrentResponse] = useState<QueryResponse | null>(null);
+  // const [currentResponse, setCurrentResponse] = useState<QueryResponse | null>(null);
   const [queryHistory, setQueryHistory] = useState<QueryResponse[]>([]);
   const [showWhoAmI, setShowWhoAmI] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -116,8 +116,6 @@ const handleSearch = async () => {
       timestamp: new Date(),
       processingTime: 1.5,
     };
-
-    setCurrentResponse(newResponse);
     setStructuredResponse(data.response); // 👈 set structured blocks
     setQueryHistory(prev => [newResponse, ...prev.slice(0, 4)]);
     setQuery('');
