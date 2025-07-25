@@ -10,7 +10,9 @@
     "react-d3-tree": "^3.6.6",
     "react-dom": "^19.1.0",
     "react-error-boundary": "^6.0.0",
-    "react-router-dom": "^7.7.1"
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.7.1",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@types/chart.js": "^2.9.41",
