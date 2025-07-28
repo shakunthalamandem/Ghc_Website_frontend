@@ -1,6 +1,6 @@
 // src/types/custom.d.ts
 
-export type BlockType = 'text' | 'card' | 'table' | 'chart' | 'link';
+export type BlockType = 'text' | 'card' | 'table' | 'chart' | 'link'| 'slides'  | 'suggested_questions';
 
 export type ChartType =
   | 'bar'
@@ -19,6 +19,13 @@ export interface BaseBlock {
   row: number;
   column: number;
   total_columns: number;
+}
+
+
+//suggested questions
+export interface SuggestedQuestionsBlock extends BaseBlock {
+  type: 'suggested_questions';
+  questions: string[];
 }
 
 // ------------------ Basic Blocks ------------------
@@ -70,7 +77,8 @@ export interface PieChartBlock extends BaseChartBlock {
 
 // Bar / StackedBar Chart
 export interface BarChartBlock extends BaseChartBlock {
-  chartType: 'bar' | 'stackedBar';
+  chartType: 'bar';
+  title: string;
   data: {
     labels: string[];
     datasets: {
@@ -81,9 +89,33 @@ export interface BarChartBlock extends BaseChartBlock {
   };
 }
 
+export interface StackedBarChartBlock extends BaseChartBlock {
+ chartType:  'stackedBar';
+  title: string;
+  data: {
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      backgroundColor: string;
+    }[];
+  };
+}
 // Line / Area Chart
 export interface LineChartBlock extends BaseChartBlock {
-  chartType: 'line' | 'area';
+  chartType: 'line';
+  data: {
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      borderColor?: string;
+      fillColor?: string;
+    }[];
+  };
+}
+export interface AreaChartBlock extends BaseChartBlock {
+  chartType: 'area';
   data: {
     labels: string[];
     datasets: {
@@ -128,16 +160,34 @@ export interface CalendarChartBlock extends BaseChartBlock {
   data: { date: string; value: number }[];
 }
 
+
+//slides
+
+export interface Slide {
+  title: string;
+  content: string;
+  image?: string | null;
+}
+export interface SlidesBlock extends BaseBlock {
+  type: 'slides';
+  title: string;
+  slides: Slide[];
+}
+
+
 // Union of All Chart Types
 export type ChartBlock =
   | PieChartBlock
   | BarChartBlock
+  | StackedBarChartBlock
   | LineChartBlock
+  | AreaChartBlock
   | ScatterChartBlock
   | BubbleChartBlock
   | HeatmapChartBlock
   | TreeChartBlock
   | CalendarChartBlock;
+
 
 // ------------------ Unified Block Type ------------------
 
@@ -146,4 +196,6 @@ export type DynamicBlock =
   | CardBlock
   | TableBlock
   | LinkBlock
-  | ChartBlock;
+  | ChartBlock
+  | SlidesBlock
+  | SuggestedQuestionsBlock;

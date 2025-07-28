@@ -3,7 +3,9 @@ import ChartBlock from './ChartBlock';
 import CardBlock from './CardBlock';
 import TableBlock from './TableBlock';  
 import TextBlock from './TextBlock';
+import LinkBlock from './LinkBlock';
 import { DynamicBlock } from './types';
+import SuggestedQuestionsBlock from './SuggestedQuestionsBlock';
 
 
 interface Props {
@@ -20,6 +22,12 @@ const renderBlock = (item: DynamicBlock) => {
       return <TableBlock {...item} />;
     case 'chart':
       return <ChartBlock {...item} />;
+    case 'link':
+      return <LinkBlock {...item} />;
+    case 'suggested_questions':
+      return <SuggestedQuestionsBlock {...item} />;
+
+
     default:
       return <div className="text-red-500">Unknown type: {item.type}</div>;
   }

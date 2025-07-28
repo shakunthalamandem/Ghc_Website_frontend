@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+// import ReactMarkdown from 'react-markdown';
+// import remarkGfm from 'remark-gfm';
 interface TextBlockProps {
   content: string;
 }
@@ -8,9 +8,9 @@ interface TextBlockProps {
 const TextBlock: React.FC<TextBlockProps> = ({ content }) => {
   return (
     <>
-    <div className="p-4 text-lg leading-relaxed text-gray-100 bg-black/10 rounded-xl">
+    <div className="p-4 text-lg leading-relaxed text-gray-100 bg-black/10 rounded-xl">{content}
       
-     <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+     {/* <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown> */}
     </div>
     </>
   );
