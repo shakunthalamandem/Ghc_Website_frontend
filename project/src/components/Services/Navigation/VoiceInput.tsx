@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Mic, MicOff, Volume2 } from 'lucide-react';
+import { Mic, MicOff, Volume2, X } from 'lucide-react';
 
 interface VoiceInputProps {
   onTranscript: (text: string) => void;
@@ -19,6 +19,7 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({
   const [, setTranscript] = useState('');
   const [confidence, setConfidence] = useState(0);
   const [permissionError, setPermissionError] = useState<string | null>(null);
+  const [showPermissionError, setShowPermissionError] = useState(false);
 
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -28,6 +29,16 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     setIsSupported(!!SpeechRecognition);
   }, []);
+
+  useEffect(() => {
+    if (showPermissionError) {
+      const timer = setTimeout(() => {
+        setShowPermissionError(false);
+      }, 10000); // auto-hide after 10s
+
+      return () => clearTimeout(timer);
+    }
+  }, [showPermissionError]);
 
   const initializeRecognition = useCallback(() => {
     if (!isSupported) return null;
@@ -79,11 +90,13 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({
 
       if (event.error === 'not-allowed') {
         setPermissionError('Microphone access denied. Please allow microphone access in your browser settings.');
+        setShowPermissionError(true);
         stopListening();
       } else if (event.error === 'no-speech' || event.error === 'audio-capture') {
         stopListening();
       } else if (event.error === 'network') {
         setPermissionError('Network error. Please check your internet connection.');
+        setShowPermissionError(true);
         stopListening();
       } else {
         console.log('Other speech error:', event.error);
@@ -95,12 +108,10 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({
       onListeningChange?.(false);
       if (recognitionRef.current && isListening) {
         restartTimerRef.current = setTimeout(() => {
-          if (recognitionRef.current) {
-            try {
-              recognitionRef.current.start();
-            } catch (error) {
-              console.log('Recognition restart failed:', error);
-            }
+          try {
+            recognitionRef.current?.start();
+          } catch (error) {
+            console.log('Recognition restart failed:', error);
           }
         }, 100);
       }
@@ -123,6 +134,7 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({
     if (!isSupported || isDisabled || isListening) return;
 
     setPermissionError(null);
+    setShowPermissionError(false);
 
     const recognition = initializeRecognition();
     if (!recognition) return;
@@ -137,6 +149,7 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({
     } catch (error) {
       console.error('Failed to start recognition:', error);
       setPermissionError('Failed to start voice recognition. Please try again.');
+      setShowPermissionError(true);
     }
   }, [isSupported, isDisabled, isListening, initializeRecognition, resetSilenceTimer]);
 
@@ -200,12 +213,20 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({
         )}
       </button>
 
-{permissionError && (
-  <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-orange-100 text-orange-800 border border-orange-300 px-4 py-2 shadow-md text-sm">
-    <span className="font-medium">Permission Required:</span> {permissionError}
-  </div>
-)}
-
+      {showPermissionError && permissionError && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-orange-100 text-orange-800 border border-orange-300 px-4 py-2 shadow-md text-sm rounded-lg flex items-center space-x-4 max-w-md">
+          <div>
+            <span className="font-medium">Permission Required:</span> {permissionError}
+          </div>
+          <button
+            onClick={() => setShowPermissionError(false)}
+            className="text-orange-600 hover:text-orange-800 transition"
+            title="Dismiss"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
       {isListening && (
         <div className="flex items-center space-x-1">
