@@ -1,6 +1,6 @@
 // src/types/custom.d.ts
 
-export type BlockType = 'text' | 'card' | 'table' | 'chart' | 'link'| 'slides'  | 'suggested_questions';
+export type BlockType = 'text' | 'card' | 'table' | 'chart' | 'slides'  | 'suggested_questions';
 
 export type ChartType =
   | 'bar'
@@ -49,11 +49,11 @@ export interface TableBlock extends BaseBlock {
   rows: string[][];
 }
 
-export interface LinkBlock extends BaseBlock {
-  type: 'link';
-  text: string;
-  url: string;
-}
+// export interface LinkBlock extends BaseBlock {
+//   type: 'link';
+//   text: string;
+//   url: string;
+// }
 
 // ------------------ Chart Blocks ------------------
 
@@ -195,7 +195,7 @@ export type DynamicBlock =
   | TextBlock
   | CardBlock
   | TableBlock
-  | LinkBlock
+//   | LinkBlock
   | ChartBlock
   | SlidesBlock
   | SuggestedQuestionsBlock;
