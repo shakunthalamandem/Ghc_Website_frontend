@@ -6,6 +6,7 @@ import TextBlock from './TextBlock';
 import LinkBlock from './LinkBlock';
 import { DynamicBlock } from './types';
 import SuggestedQuestionsBlock from './SuggestedQuestionsBlock';
+import SlidesBlock from './SlidesBlock';
 
 
 interface Props {
@@ -26,10 +27,12 @@ const renderBlock = (item: DynamicBlock) => {
       return <LinkBlock {...item} />;
     case 'suggested_questions':
       return <SuggestedQuestionsBlock {...item} />;
+    case 'slides':
+      return <SlidesBlock {...item} />;
 
 
     default:
-      return <div className="text-red-500">Unknown type: {item.type}</div>;
+      return <div className="text-red-500">Unknown type: {item}</div>;
   }
 };
 
@@ -44,8 +47,10 @@ const DynamicRenderer: React.FC<Props> = ({ response }) => {
     <div className="space-y-8">
       {Object.entries(groupedByRow).map(([row, items]) => {
         const totalCols = items[0]?.total_columns || 1;
+        const columnClass = `grid-cols-${Math.min(Math.max(totalCols, 1), 6)}`; // cap between 1-6
+
         return (
-          <div key={row} className={`grid grid-cols-${totalCols} gap-4`}>
+<div key={row} className={`grid ${columnClass} gap-4`}>
             {items.map((item, i) => (
               <div key={i} className="col-span-1">
                 {renderBlock(item)}

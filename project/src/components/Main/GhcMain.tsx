@@ -99,7 +99,7 @@ const handleSearch = async () => {
   setIsProcessing(true);
 
   try {
-    const response = await fetch('http://192.168.1.43:8000/api/assistant_query/', {
+    const response = await fetch('http://192.168.1.43:8000/api/dummy_assistant/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question: query }),
