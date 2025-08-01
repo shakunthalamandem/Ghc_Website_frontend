@@ -10,7 +10,7 @@ import Footer from '../Pages/Footer';
 import Logo from '../Assets/Images/Color logo - no background.png'; 
 import DynamicRenderer from '../Sections/DynamicRenderer';
 import { DynamicBlock } from '../Sections/types';
-
+import SpeechRecognition, { startListening } from 'react-speech-recognition';
 interface QueryResponse {
   id: string;
   query: string;
@@ -125,6 +125,18 @@ const handleSearch = async () => {
   } finally {
     setIsProcessing(false);
   }
+};
+
+const handleCancelVoice = () => {
+  setIsVoiceListening(false);
+  setVoiceTranscript('');
+  // startListening({ continuous: false });
+
+  // Restart after a short delay (if desired)
+  setTimeout(() => {
+    startListening({ continuous: true });
+    setIsVoiceListening(true);
+  }, 1);
 };
 
   const handleVoiceTranscript = (transcript: string) => {
@@ -334,7 +346,12 @@ const handleSearch = async () => {
         onSelectQuery={handleSelectHistoryQuery}
         onClearHistory={handleClearHistory}
       />
-      <VoiceAvatar isListening={isVoiceListening} transcript={voiceTranscript} confidence={1} />
+<VoiceAvatar
+  isListening={isVoiceListening}
+  transcript={voiceTranscript}
+  confidence={1}
+  onCancel={handleCancelVoice} // 👈 new prop
+/>
     </div>
   );
 }
