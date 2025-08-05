@@ -7,6 +7,7 @@ import TextBlock from './TextBlock';
 import { DynamicBlock } from './types';
 import SuggestedQuestionsBlock from './SuggestedQuestionsBlock';
 import SlidesBlock from './SlidesBlock';
+import TreeChart from './TreeChart';
 
 
 interface Props {
@@ -29,6 +30,8 @@ const renderBlock = (item: DynamicBlock) => {
       return <SuggestedQuestionsBlock {...item} />;
     case 'slides':
       return <SlidesBlock {...item} />;
+    case 'tree':
+      return <TreeChart {...item}/>;
 
 
     default:

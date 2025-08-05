@@ -1,6 +1,4 @@
-// src/types/custom.d.ts
-
-export type BlockType = 'text' | 'card' | 'table' | 'chart' | 'slides'  | 'suggested_questions';
+export type BlockType = 'text' | 'card' | 'table' | 'tree' | 'chart' | 'slides' | 'suggested_questions';
 
 export type ChartType =
   | 'bar'
@@ -10,22 +8,13 @@ export type ChartType =
   | 'bubble'
   | 'heatmap'
   | 'area'
-  | 'stackedBar'
-  | 'tree'
-  | 'calendar';
+  | 'stackedBar'; // Notice: 'tree' and 'calendar' removed
 
 export interface BaseBlock {
   type: BlockType;
   row: number;
   column: number;
   total_columns: number;
-}
-
-
-//suggested questions
-export interface SuggestedQuestionsBlock extends BaseBlock {
-  type: 'suggested_questions';
-  questions: string[];
 }
 
 // ------------------ Basic Blocks ------------------
@@ -49,11 +38,10 @@ export interface TableBlock extends BaseBlock {
   rows: string[][];
 }
 
-// export interface LinkBlock extends BaseBlock {
-//   type: 'link';
-//   text: string;
-//   url: string;
-// }
+export interface SuggestedQuestionsBlock extends BaseBlock {
+  type: 'suggested_questions';
+  questions: string[];
+}
 
 // ------------------ Chart Blocks ------------------
 
@@ -63,7 +51,6 @@ interface BaseChartBlock extends BaseBlock {
   chartType: ChartType;
 }
 
-// Pie Chart
 export interface PieChartBlock extends BaseChartBlock {
   chartType: 'pie';
   data: {
@@ -75,10 +62,8 @@ export interface PieChartBlock extends BaseChartBlock {
   };
 }
 
-// Bar / StackedBar Chart
 export interface BarChartBlock extends BaseChartBlock {
   chartType: 'bar';
-  title: string;
   data: {
     labels: string[];
     datasets: {
@@ -90,8 +75,7 @@ export interface BarChartBlock extends BaseChartBlock {
 }
 
 export interface StackedBarChartBlock extends BaseChartBlock {
- chartType:  'stackedBar';
-  title: string;
+  chartType: 'stackedBar';
   data: {
     labels: string[];
     datasets: {
@@ -101,7 +85,7 @@ export interface StackedBarChartBlock extends BaseChartBlock {
     }[];
   };
 }
-// Line / Area Chart
+
 export interface LineChartBlock extends BaseChartBlock {
   chartType: 'line';
   data: {
@@ -114,6 +98,7 @@ export interface LineChartBlock extends BaseChartBlock {
     }[];
   };
 }
+
 export interface AreaChartBlock extends BaseChartBlock {
   chartType: 'area';
   data: {
@@ -127,55 +112,48 @@ export interface AreaChartBlock extends BaseChartBlock {
   };
 }
 
-// Scatter Chart
 export interface ScatterChartBlock extends BaseChartBlock {
   chartType: 'scatter';
   data: { x: number; y: number }[];
 }
 
-// Bubble Chart
 export interface BubbleChartBlock extends BaseChartBlock {
   chartType: 'bubble';
   data: { x: number; y: number; r: number }[];
 }
 
-// Heatmap Chart
 export interface HeatmapChartBlock extends BaseChartBlock {
   chartType: 'heatmap';
   data: number[][];
 }
 
-// Tree Chart
-export interface TreeChartBlock extends BaseChartBlock {
-  chartType: 'tree';
+// ------------------ Tree Block (not chart anymore) ------------------
+
+export interface TreeChartBlock extends BaseBlock {
+  type: 'tree';
+  title: string;
   data: {
     name: string;
     children?: TreeChartBlock['data'][];
   };
 }
 
-// Calendar Chart
-export interface CalendarChartBlock extends BaseChartBlock {
-  chartType: 'calendar';
-  data: { date: string; value: number }[];
-}
-
-
-//slides
+// ------------------ Slides Block ------------------
 
 export interface Slide {
   title: string;
   content: string;
   image?: string | null;
 }
+
 export interface SlidesBlock extends BaseBlock {
   type: 'slides';
   title: string;
   slides: Slide[];
 }
 
+// ------------------ Union Types ------------------
 
-// Union of All Chart Types
 export type ChartBlock =
   | PieChartBlock
   | BarChartBlock
@@ -184,18 +162,13 @@ export type ChartBlock =
   | AreaChartBlock
   | ScatterChartBlock
   | BubbleChartBlock
-  | HeatmapChartBlock
-  | TreeChartBlock
-  | CalendarChartBlock;
-
-
-// ------------------ Unified Block Type ------------------
+  | HeatmapChartBlock;
 
 export type DynamicBlock =
   | TextBlock
   | CardBlock
   | TableBlock
-//   | LinkBlock
-  | ChartBlock
+  | TreeChartBlock
   | SlidesBlock
-  | SuggestedQuestionsBlock;
+  | SuggestedQuestionsBlock
+  | ChartBlock;
