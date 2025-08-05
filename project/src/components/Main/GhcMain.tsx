@@ -10,6 +10,9 @@ import Footer from '../Pages/Footer';
 import Logo from '../Assets/Images/Color logo - no background.png'; 
 import DynamicRenderer from '../Sections/DynamicRenderer';
 import { DynamicBlock } from '../Sections/types';
+import ClientsSection from './ClientsSection';
+import ExpertiseSection from './ExpertiseSection';
+import AboutSection from './AboutSection';
 
 interface QueryResponse {
   id: string;
@@ -264,7 +267,9 @@ const handleSearch = async () => {
             </div>
           </div>
         )}
-
+< ClientsSection/>
+<ExpertiseSection/>
+<AboutSection/>
         {/* {currentResponse && !isProcessing && (
           <div className="mb-12 max-w-4xl mx-auto">
             <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden">
