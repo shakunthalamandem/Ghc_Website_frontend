@@ -8,6 +8,7 @@ import { DynamicBlock } from './types';
 import SuggestedQuestionsBlock from './SuggestedQuestionsBlock';
 import SlidesBlock from './SlidesBlock';
 import TreeChart from './TreeChart';
+import CalendarChart from './CalendarChart';
 
 
 interface Props {
@@ -32,6 +33,8 @@ const renderBlock = (item: DynamicBlock) => {
       return <SlidesBlock {...item} />;
     case 'tree':
       return <TreeChart {...item}/>;
+    case 'calendar':
+    return <CalendarChart {...item} />;
 
 
     default:

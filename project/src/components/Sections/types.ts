@@ -1,4 +1,4 @@
-export type BlockType = 'text' | 'card' | 'table' | 'tree' | 'chart' | 'slides' | 'suggested_questions';
+export type BlockType = 'text' | 'card' | 'table' | 'tree' | 'chart' | 'slides' | 'suggested_questions'| 'calendar';
 
 export type ChartType =
   | 'bar'
@@ -138,6 +138,15 @@ export interface TreeChartBlock extends BaseBlock {
   };
 }
 
+export interface CalendarChartBlock extends BaseBlock {
+  type: 'calendar';
+  title: string;
+  data: {
+    date: string;
+    label: string;
+  }[];
+}
+
 // ------------------ Slides Block ------------------
 
 export interface Slide {
@@ -171,4 +180,5 @@ export type DynamicBlock =
   | TreeChartBlock
   | SlidesBlock
   | SuggestedQuestionsBlock
-  | ChartBlock;
+  | ChartBlock
+  | CalendarChartBlock;

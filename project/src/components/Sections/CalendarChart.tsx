@@ -1,45 +1,60 @@
-// components/Charts/CalendarChart.tsx
-import React from 'react';
-import CalendarHeatmap from 'react-calendar-heatmap';
-import 'react-calendar-heatmap/dist/styles.css';
-import {  subDays } from 'date-fns';
 
-interface CalendarData {
-  date: string;
-  value: number;
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import './CalendarStyles.css';
+import 'react-calendar/dist/Calendar.css';
+interface CalendarEvent {
+  date: string;  // 'YYYY-MM-DD'
+  label: string;
 }
 
 interface CalendarChartProps {
-  data: CalendarData[];
+  data: CalendarEvent[];
   title: string;
 }
 
 const CalendarChart: React.FC<CalendarChartProps> = ({ data, title }) => {
-  const endDate = new Date();
-  const startDate = subDays(endDate, 180); // show last 6 months
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const getEventsForDate = (date: Date) => {
+    const formatted = date.toISOString().split('T')[0];
+    return data.filter((event) => event.date === formatted);
+  };
 
   return (
-    <div className="p-4 bg-white rounded-xl shadow">
+    // <div className="p-4  rounded-xl shadow">
+     <>
       <h3 className="text-lg font-semibold mb-4">{title}</h3>
-      <CalendarHeatmap
-        startDate={startDate}
-        endDate={endDate}
-        values={data}
-        classForValue={(value) => {
-          if (!value || value.value === 0) return 'color-empty';
-          if (value.value < 2) return 'color-scale-1';
-          if (value.value < 4) return 'color-scale-2';
-          if (value.value < 6) return 'color-scale-3';
-          return 'color-scale-4';
+      <Calendar
+        onClickDay={(value) => setSelectedDate(value)}
+        tileContent={({ date, view }) => {
+          if (view !== 'month') return null;
+
+          const events = getEventsForDate(date);
+          return events.length > 0 ? (
+            <ul className="calendar-events">
+              {events.map((event, idx) => (
+                <li key={idx} className="calendar-event-dot group">
+                  <span className="tooltip group-hover:scale-100">{event.label}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null;
         }}
-        tooltipDataAttrs={(value: any) => {
-          return {
-            'data-tip': `${value.date}: ${value.value} event(s)`,
-          };
-        }}
-        showWeekdayLabels
       />
-    </div>
+
+      {selectedDate && (
+        <div className="mt-4">
+          <h4 className="font-medium">Events on {selectedDate.toDateString()}:</h4>
+          <ul className="list-disc list-inside">
+            {getEventsForDate(selectedDate).map((event, idx) => (
+              <li key={idx}>{event.label}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+     </>
+    // </div>
   );
 };
 
