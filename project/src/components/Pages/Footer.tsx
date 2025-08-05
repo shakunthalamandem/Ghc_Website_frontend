@@ -61,7 +61,7 @@ const Footer = () => {
             </div>
 
             {/* Google Map */}
-            <div className="w-full h-40 border border-white/10 rounded-lg overflow-hidden">
+            <div className="w-50 h-20 border border-white/10 rounded-lg overflow-hidden align-center">
               <iframe
  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.1327984030914!2d78.39875!3d17.443676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb916718d39ae7%3A0x67d87622ad1cb355!2sGolden%20Hills%20Capital%20India%20Private%20Limited.!5e0!3m2!1sen!2sin!4v1691497295681!5m2!1sen!2sin"
 
